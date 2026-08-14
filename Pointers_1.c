@@ -147,3 +147,9 @@ int main()
 
 
 // 7. Pointer Strings
+
+#include<stdio.h>
+int main()
+{
+    
+}
