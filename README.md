@@ -1,31 +1,45 @@
-# Entri - Embedded System Course 🎓
+# Embedded Engineering Journey 🎓🚀
 
-Welcome to my learning repository for the **Embedded System Course**. This project serves as a structured workspace containing C programming practice modules, foundational algorithms, and core concepts essential for embedded hardware engineering.
+Welcome to my central engineering portfolio repository. This workspace tracks my technical learning roadmap from fundamental software syntax to advanced embedded architectures and system design.
+
+---
 
 ## 📁 Repository Structure
 
-The code is organized into targeted logical modules:
-* `if.c` & `switch.c` - Conditional statements and flow control.
-* `for_and_while_loop.c` - Iterative control loops.
-* `functions.c` & `function_with_argument_...` - Modular programming configurations.
-* `Array_1.c` to `Array_4.c` - Data sequencing configurations.
-* `Pointers_1.c` & `Pointers_2.c` - Memory addressing structures.
-* `Strings_1.c` & `Strings_2.c` - Character array manipulations.
+My current tracking is divided into specialized modules based on target platforms and learning sources:
 
-## 🛠️ Getting Started
+### 🔹 01_C_Programming
+This is my primary foundational workspace where I have built out core software mechanics and logic structures:
 
-### Prerequisites
-To compile and execute these local source tracks, you will need a standard C compiler configured on your machine:
-* **GCC (MinGW)** for Windows or Native GCC for Linux systems.
+* **`Chatgpt_practice/` (Main Workspace) 📂**
+  This folder contains the bulk of my core C programming journey, organized chronologically into **16 sequential modules** from basic control blocks to memory pointers:
+  * `01_if.c` to `03_for_and_while_loop.c` - Core control structures and iterative logic.
+  * `04_functions.c` to `08_functions_with_No_arguments...` - Modular programming and memory scopes.
+  * `09_Array_1.c` to `12_Array_4.c` - Structured data sequences and memory buffers.
+  * `13_Strings_1.c` & `14_Strings_2.c` - Character arrays and manipulation logic.
+  * `15_Pointers_1.c` & `16_Pointers_2.c` - Advanced memory addressing and hardware level mapping.
 
-### Compilation and Execution
-To compile any individual module from your terminal workspace, run:
-```bash
-gcc filename.c -o program_output
-```
-Run the compiled executable output binary:
-* On Windows: `.\program_output.exe`
-* On Linux: `./program_output`
+* **`Entri Class_practice/`** - Official course tracks and core structured syllabus assignments (`01_Entri_1.c` through `06_Entri_Pointers.c`).
+* **`C in Depth_book practice/`**, **`Claude_practice/`**, & **`Youtube_practice/`** - Technical textbook exercises, AI sandbox scripts, and video tutorial code layouts.
 
-## ⚙️ Project Rules
-* Auto-generated compiler assets (`*.exe`) are excluded via the active workspace `.gitignore` rule to keep the structural code timeline clean and lightweight.
+---
+
+## 🗺️ Upcoming Roadmap Modules
+
+As my Embedded System Course progresses, this tracking repository will scale sequentially to encompass:
+
+* 📟 **`02_8051_Microcontrollers/`** - Core 8-bit architecture, Keil C51 development, assembly interfacing, and GPIO/Timer registers.
+* ⚡ **`03_AVR_Microcontrollers/`** - Bare-metal registers, internal timers, interrupts, and UART configurations (ATmega16/32).
+* ⚙️ **`04_STM32_ARM_Cortex/`** - STM32CubeIDE development, hardware HAL driver layers, and FreeRTOS deployment.
+* 🌐 **`05_ESP32_IoT/`** - Network data layers, Wi-Fi architectures, Bluetooth stacks, and MQTT telemetry communication.
+* 🐧 **`06_Embedded_Linux/`** - Core kernel configurations, shell scripting, customized device drivers, and Yocto environments.
+* 📦 **`07_Data_Structures_in_C/`** - Arrays, linked lists, stacks, queues, and sorting optimization.
+
+---
+
+## 🛠️ Getting Started Rules
+* **Safe Compilation Rule:** Always preserve text files by compiling to distinct binary output strings:
+  ```bash
+  gcc filename.c -o filename.exe
+  ```
+* **Git Exclusions:** The customized `.gitignore` sheet actively discards auto-generated machine elements (`*.exe`) to keep the remote timeline clean.
