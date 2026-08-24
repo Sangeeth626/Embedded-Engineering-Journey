@@ -99,6 +99,42 @@ int main()
     return 0;
 }*/
 
+// 5.1 Precedence of Defrencing Operator and Increament/Decreament Operator
+
+/*#include<stdio.h>
+int main()
+{
+    int arr[2] = {25, 38};
+    int *ptr = arr ;
+    int x ;
+
+    x = *ptr ;
+    printf("Value of x = %d\n", x);
+    printf("Address = %p\n", ptr);
+    printf("*ptr = %d\n\n", *ptr) ;
+
+//    x = *ptr++ ;                        // uncomment one by one to see the working
+//    printf("Value of x = %d\n", x);
+//    printf("Address = %p\n", ptr);
+//    printf("*ptr = %d\n\n", *ptr) ;
+
+//    x = *++ptr ;
+//    printf("Value of x = %d\n", x);
+//    printf("Address = %p\n", ptr);
+//    printf("*ptr = %d\n\n", *ptr) ;
+
+//    x = ++*ptr ;
+//    printf("Value of x = %d\n", x);
+//    printf("Address = %p\n", ptr);
+//    printf("*ptr = %d\n\n", *ptr) ;
+
+//    x = (*ptr)++ ;
+//    printf("Value of x = %d\n", x);
+//    printf("Address = %p\n", ptr);
+//    printf("*ptr = %d\n\n", *ptr) ;
+    return 0 ;
+}*/
+
 
 // 6. Pointer to Pointer
 
@@ -155,19 +191,219 @@ int main()
 
 // 8. Program to print the value and address of element of an array using pointer notation  
 
+/*#include<stdio.h>
+int main()
+{
+    int arr[5] = {5, 10, 15, 20, 25};
+    int i ;
+
+    for(i=0 ; i<5 ; i++)
+    {
+        printf("Value of arr[%d] = %d\t", i, *(arr+i));
+        printf("Address of arr[%d] = %p\n", i, arr+i) ;
+    }
+    return 0 ;
+}*/
 
 
 // 9. Program to print the value of element of an array element using pointer and subscript notation
 
-
+/*#include <stdio.h>
+int main()
+{
+    int arr[5] = {5, 10, 15, 20, 25} ;
+    int i = 0 ;
+    for(i=0 ; i<5 ; i++)
+    {
+        printf("Value of arr[%d] = ", i);
+        printf("%d\t", arr[i]);
+        printf("%d\t", *(arr+i));
+        printf("%d\t", *(i+arr));
+        printf("%d\n", i[arr]);
+        printf("Address of arr[%d] = %p\n", i , &arr[i]);
+    }
+}*/
 
 // 10. Program to print the value and the addrress of array elements by subscripting a pointer variable
 
+/*#include<stdio.h>
+int main()
+{
+    int arr[5] = {5, 10, 15, 20, 25};
+    int *p = arr ;
+    int i ;
+
+    for(i=0 ; i<5 ; i++)
+    {
+        printf("Address of arr[%d] = %p   %p   %p   %p\n", i, &arr[i], &p[i], arr+i, p+i);
+        printf("Value of arr[%d]   = %d   %d   %d   %d\n", i, arr[i], p[i], *(arr+i), *(p+i));
+    }
+    return 0 ;
+}*/
 
 
 // 11. Program to understand diffrence between pointer to an integer and pointer to an array of integers
 
+/*#include<stdio.h>
+int main()
+{
+    int arr[5] ;     // declaring array of 5 elements
+    int *p ;         // declaring integer pointer
+    p = arr ;        // points to 0th element
+    int (*ptr)[5] ;  // decalring array pointer
+    ptr = &arr ;     // points to the whole array
+
+    printf("p = %p , ptr = %p\n", p, ptr);
+    p++ ;
+    ptr++ ;
+    printf("p = %p , ptr = %p\n", p, ptr);
+
+    return 0 ;
+}*/
 
 
 // 12. Program to dereference a pointer to an array
+
+/*#include<stdio.h>
+int main()
+{
+    int arr[5] = {5, 10, 15, 20, 25};
+    int *p = arr ;
+    int (*ptr)[5] = &arr ;
+
+    printf("p = %p  ,  ptr = %p\n", p, ptr);
+    printf("*p = %d ,  *ptr = %p\n", *p, *ptr);
+    printf("Size of p  = %zu   ,  Size of ptr  = %zu\n", sizeof(p), sizeof(ptr));
+    printf("Size of *p = %zu   ,  Size of *ptr = %zu", sizeof(*p), sizeof(*ptr));
+
+    return 0 ;
+}*/
+
+
+// 13. Program to print value and address of 2D array
+
+/*#include<stdio.h>
+int main()
+{
+    int arr[3][4] = {{10, 11, 12, 13} , {20, 21, 22, 23} , {30, 31, 32, 33}} ;
+    int i, j ;
+
+    for(i=0 ; i<3 ; i++)
+    {
+        printf("Address of %dth array = %p\n", i, arr[i]);
+        for(j=0 ; j<4 ; j++)
+        {
+            printf("%d  ", arr[i][j]) ;
+        }
+        printf("\n") ;
+    }
+    return 0 ;
+}*/
+
+// 13.1 Using dereferance operation to print
+
+/*#include<stdio.h>
+int main()
+{
+    int arr[3][4] = {{10, 11, 12, 13} , {20, 21, 22, 23} , {30, 31, 32, 33}} ;
+    int i, j ;
+
+    for(i=0 ; i<3 ; i++)
+    {
+        printf("Address of %dth array = %p\n", i, *(arr+i));
+        for(j=0 ; j<4 ; j++)
+        {
+            printf("%d  ", *(*(arr+i)+j) ) ;
+        }
+        printf("\n") ;
+    }
+    return 0 ;
+}*/
+
+
+// 14. Program to print elements of 2D array by subscripting a pointer to an array
+
+/*#include<stdio.h>
+int main()
+{
+    int arr[3][4] = {{10, 11, 12, 13} , {20, 21, 22, 23} , {30, 31, 32, 33}};
+    int (*ptr)[4] ;   
+    ptr = arr ;
+
+    printf("%p   %p   %p\n", ptr, ptr+1, ptr+3);
+    printf("%d   %d   %d\n", ptr[0][0], ptr[1][2], ptr[2][3]);
+
+    return 0 ;
+}*/
+
+// 14.1 Program to print elements of 2D array by subscripting a pointer to an array ( Using Deferance operation)
+
+/*#include<stdio.h>
+int main()
+{
+    int arr[3][4] = {{10, 11, 12, 13} , {20, 21, 22, 23} , {30, 31, 32, 33}};
+    int (*ptr)[4] ;   
+    ptr = arr ;
+
+    printf("%p   %p   %p\n", *ptr, *(ptr+1), *(ptr+3) );
+    printf("%d   %d   %d\n", **ptr, *(*(ptr+1)+2), *(*(ptr+2)+3));
+
+    return 0 ;
+}*/
+
+
+// 15. Program to print the element of 3D array using pointer notation
+
+
+// 16. Call by value ( Incrementing the value inside function)
+
+/*#include<stdio.h>
+
+void increment(int x, int y);
+
+int main()
+{
+    int a=5 , b=10 ;
+
+    printf("a = %d  ,  b = %d\n", a, b);
+    increment(a, b);
+    printf("a = %d  ,  b = %d\n", a, b);
+
+    return 0 ;
+}
+
+void increment(int x, int y)
+{
+    x++ ;
+    y++ ;
+    printf("x = %d  ,  y = %d\n", x, y);
+}*/
+
+
+// 17. Call by Referance ( Incrementing the value inside function)
+
+/*#include<stdio.h>
+
+void increment(int *p, int *q);
+
+int main()
+{
+    int a=5 , b=10 ;
+
+    printf(" a = %d  ,   b = %d\n", a, b);
+    increment(&a, &b);
+    printf(" a = %d  ,   b = %d\n", a, b);
+
+    return 0 ;
+}
+
+void increment(int *p, int *q)
+{
+    (*p)++ ;
+    (*q)++ ;
+    printf("*p = %d  ,  *q = %d\n", *p, *q);
+}*/
+
+
+// 18. Retuning more than one value from function using call by referance ( Sum, Diffrence, Product  of two numbers )
 
