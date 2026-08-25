@@ -355,6 +355,10 @@ int main()
 // 15. Program to print the element of 3D array using pointer notation
 
 
+
+
+
+
 // 16. Call by value ( Incrementing the value inside function)
 
 /*#include<stdio.h>
@@ -406,4 +410,177 @@ void increment(int *p, int *q)
 
 
 // 18. Retuning more than one value from function using call by referance ( Sum, Diffrence, Product  of two numbers )
+
+/*#include<stdio.h>
+
+void func(int x, int y, int *ps, int *pd, int *pp);
+int main()
+{
+    int a, b, sum, diff, product ;
+
+    a = 3 ;
+    b = 2 ;
+    func(a, b, &sum, &diff, &product);
+    printf(" Sum = %d\n Diffrence = %d\n Product = %d\n", sum, diff, product);
+    return 0 ;
+}
+
+void func(int x, int y, int *ps, int *pd, int *pp)
+{
+    *ps = x + y ;
+    *pd = x - y ;
+    *pp = x * y ;
+}*/
+
+// 18.1 Retuning more than one value from function using call by referance ( Sum, Diffrence, Product  of two numbers ) (also changing the variable)
+
+/*#include<stdio.h>
+
+void func(int *x, int *y, int *ps, int *pd, int *pp);
+int main()
+{
+    int a, b, sum, diff, product ;
+
+    a = 3 ;
+    b = 2 ;
+    func(&a, &b, &sum, &diff, &product);
+    printf(" Sum(%d + %d) = %d\n Diffrence(%d - %d) = %d\n Product(%d * %d) = %d\n", a, b, sum, a, b,diff, a, b, product);
+    return 0 ;
+}
+
+void func(int *x, int *y, int *ps, int *pd, int *pp)
+{
+    *x = 5;
+    *y = 3;
+    *ps = *x  + *y ;
+    *pd = *x  - *y ;
+    *pp = *x  * *y ;
+}*/
+
+
+// 19. Function returing the pointer
+
+
+
+
+
+// 20. Passing 1D array to a function
+
+/*#include<stdio.h>
+
+void func(int a[]) ;
+int main()
+{
+    int arr[5] = {10, 20, 30, 40, 50} ;
+    int i ;
+
+    printf("Inside main() : ");
+    for(i=0 ; i<5 ; i++)
+    {
+        printf("%d  ", arr[i]);
+    }
+
+    printf("\n") ;
+    func(arr) ;
+    
+    return 0 ;
+}
+
+void func(int arr[])
+{
+    int i ;
+
+    printf("Inside func() : ");
+    for(i=0 ; i<5 ; i++)
+    {
+        printf("%d  ", arr[i]);
+    }
+}*/
+
+
+// 21. Program to verify the fact that when an array is passed to function, the reciving parameter is declared as a pointer
+
+/*#include<stdio.h>
+
+void func(double *d, int *i, char *c) ;
+int main()
+{
+    double d_arr[5] = {1.23, 2.34, 3.45, 4.56, 5.67};
+    int    i_arr[5] = {1   , 2   , 3   , 4   , 5   };
+    char   c_arr[5] = {'a' , 'e' , 'i' , 'o' , 'u' };
+
+    printf("Inside main()\n");
+    printf("Size of d_arr = %zu\n", sizeof(d_arr));
+    printf("Address       = %p\n",d_arr);
+    printf("Size of i_arr = %zu\n", sizeof(i_arr));
+    printf("Address       = %p\n",i_arr);
+    printf("Size of c_arr = %zu\n", sizeof(c_arr));
+    printf("Address       = %p\n",c_arr);
+
+    printf("\n") ;
+    func(d_arr, i_arr, c_arr);
+
+    return 0 ;
+}
+
+void func(double *d, int *i, char *c)
+{
+    printf("Inside func()\n");
+    printf("Size of d_arr = %zu\n", sizeof(d));
+    printf("Address       = %p\n", d);
+    printf("Size of i_arr = %zu\n", sizeof(i));
+    printf("Address       = %p\n", i);
+    printf("Size of c_arr = %zu\n", sizeof(c));
+    printf("Address       = %p\n", c);
+}*/
+
+
+// 22. Passing 2D array to a function
+
+/*#include<stdio.h>
+
+void func( int (*a)[4] );
+int main()
+{
+    int arr[3][4] = {{10, 11, 12, 13} , {20, 21, 22, 23} , {30, 31, 32, 33}};
+    int i ,j ;
+
+    printf("Inside main() : size of arr  = %zu\n", sizeof(arr));
+
+    func(arr) ;
+
+    printf("\nContents of array after calling the function\n");
+    for(i=0 ; i<3 ; i++)
+    {
+        for(j=0 ; j<4 ; j++)
+        {
+            printf("%d  ", arr[i][j]) ;
+        }
+        printf("\n") ;
+    }
+
+    return 0 ;
+}
+
+void func( int (*a)[4] )
+{
+    int i, j ;
+
+    printf("Inside func() : size of a    = %zu\n", sizeof(a));
+    printf("Inside func() : size of (*a) = %zu\n", sizeof(*a));
+
+//    printf("\nContents of array inside function for returning to main\n");
+    for(i=0 ; i<3 ; i++)
+    {
+        for(j=0 ; j<4 ; j++)
+        {
+            a[i][j] = a[i][j] + 2 ;
+//            printf("%d  ", a[i][j]) ;
+        }
+//        printf("\n") ;
+    }
+}*/
+
+
+// 23. Array of Pointers
 
