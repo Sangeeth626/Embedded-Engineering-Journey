@@ -72,7 +72,7 @@ int main()
     return 0 ;
 }*/
 
-// 1.1 Another way of Initialisation
+// 1.1 Another way of Initialisation (Designated Initialization)
 
 /*#include<stdio.h>
 
@@ -456,5 +456,274 @@ void display_pts(const struct Device *p)            // note (const struct Device
 
 
 // 9. typedef struct
+
+/*#include<stdio.h>
+
+typedef struct 
+{
+    float heart_rate ;
+    float spo2 ;
+} Sensor;
+
+typedef struct
+{
+    float voltage ;
+    float current ;
+} Power ;
+
+typedef struct 
+{
+    char name[20] ;
+    int id ;
+    Sensor sensor ;
+    Power power ;
+} Device ;
+
+int main()
+{
+    Device d =
+    {
+        .name              = "PulseGuard_V2" ,
+        .id                = 10894 ,
+        .sensor.heart_rate = 75.2 ,
+        .sensor.spo2       = 98.4 ,
+        .power.voltage     = 3.78 ,
+        .power.current     = -0.012
+    };
+    Device *p = &d ;
+
+    printf("Device name     : %s\n", p->name);
+    printf("Device ID       : %d\n", p->id);
+    printf("Heart Rate      : %.2f\n", p->sensor.heart_rate);
+    printf("SpO2 conc       : %.2f\n", p->sensor.spo2);
+    printf("Device Voltage  : %.3f\n", p->power.voltage);
+    printf("Device Currrent : %.3f\n", p->power.current);
+
+    return 0 ;
+}*/
+
+
+// 10. Structure + Array Problem
+
+/*#include<stdio.h>
+
+typedef struct 
+{
+    int id ;
+    char name[20] ;
+    float temp ;
+    float voltage ;
+} Sensor ;
+
+
+int main()
+{
+    Sensor s[3] =
+    {
+        {.id = 101 , .name = "LM35", .temp = 32.5 , .voltage = 3.31 } ,
+        {.id = 102 , .name = "BMP280", .temp = 28.7, .voltage = 3.28} ,
+        {.id = 103 , .name = "DHT11", .temp = 30.2, .voltage = 3.31}
+    } ;
+    Sensor *p = s ;
+
+    printf("\nPrinting using Array indexing\n\n");
+    for(int i = 0 ; i<3 ; i++)
+    {
+        printf("Sensor ID   : %d\n", s[i].id) ;
+        printf("Sensor Name : %s\n", s[i].name) ;
+        printf("Temperature : %.2f\n", s[i].temp) ;
+        printf("Voltage     : %.2f\n\n", s[i].voltage) ;
+    }
+
+    printf("\n\nPrinting using Structure pointer\n\n");
+    printf("Sensor ID   : %d\n", p->id) ;
+    printf("Sensor Name : %s\n", p->name) ;
+    printf("Temperature : %.2f\n", p->temp) ;
+    printf("Voltage     : %.2f\n", p->voltage) ;
+    printf("Address     : %p\n", p);
+    printf("Size of s1  : %zu\n\n", sizeof(*p));
+    p++ ;
+    printf("Sensor ID   : %d\n", p->id) ;
+    printf("Sensor Name : %s\n", p->name) ;
+    printf("Temperature : %.2f\n", p->temp) ;
+    printf("Voltage     : %.2f\n", p->voltage) ;
+    printf("Address     : %p\n", p);
+    printf("Size of s2  : %zu\n\n", sizeof(*p));
+    p++ ;
+    printf("Sensor ID   : %d\n", p->id) ;
+    printf("Sensor Name : %s\n", p->name) ;
+    printf("Temperature : %.2f\n", p->temp) ;
+    printf("Voltage     : %.2f\n", p->voltage) ;
+    printf("Address     : %p\n", p);
+    printf("Size of s3  : %zu\n\n", sizeof(*p));
+
+    printf("Size of s   : %zu\n", sizeof(s));
+    
+    return 0 ;
+}*/
+
+
+// 11. Padding and Alignment (int char)
+
+/*#include<stdio.h>
+
+typedef struct
+{
+    char c ;
+    int i  ;
+} Test ;
+
+int main()
+{
+    Test t ;
+
+    printf("Address of t  = %p\n", (void *)&t);
+    printf("Address of c  = %p\n", (void *)&t.c);
+    printf("Address of i  = %p\n", (void *)&t.i);
+
+    printf("Size of c     = %zu\n", sizeof(t.c));
+    printf("Size of i     = %zu\n", sizeof(t.i));
+    printf("Size of Test  = %zu\n", sizeof(t));
+
+    return 0 ;
+}*/
+
+// 11.1 Padding and Alignment (int char)
+
+/*#include<stdio.h>
+
+typedef struct
+{
+    int i  ;
+    char c ;
+} Test ;
+
+int main()
+{
+    Test t ;
+
+    printf("Address of t  = %p\n", (void *)&t);
+    printf("Address of c  = %p\n", (void *)&t.c);
+    printf("Address of i  = %p\n", (void *)&t.i);
+
+    printf("Size of c     = %zu\n", sizeof(t.c));
+    printf("Size of i     = %zu\n", sizeof(t.i));
+    printf("Size of Test  = %zu\n", sizeof(t));
+
+    return 0 ;
+}*/
+
+// 11.2 Padding and Alignment (char int char)
+
+/*#include<stdio.h>
+
+typedef struct
+{
+    char a ;
+    int b  ;
+    char c ;
+} Test ;
+
+int main()
+{
+    Test t ;
+
+    printf("Address of t       = %p\n", (void *)&t);
+    printf("Address of char a  = %p\n", (void *)&t.a);
+    printf("Address of int b   = %p\n", (void *)&t.b);
+    printf("Address of char c  = %p\n", (void *)&t.c);
+
+    printf("Size of char a    = %zu\n", sizeof(t.a));
+    printf("Size of int b     = %zu\n", sizeof(t.b));
+    printf("Size of char c    = %zu\n", sizeof(t.c));
+    printf("Size of Test      = %zu\n", sizeof(t));
+
+    return 0 ;
+}*/
+
+// 11.3 Padding and Alignment (Test1 : char int char , Test2 : int char char)
+
+/*#include<stdio.h>
+
+typedef struct
+{
+    char a ;
+    int b  ;
+    char c ;
+} Test1 ;
+
+typedef struct
+{
+    int b  ;
+    char a ;
+    char c ;
+} Test2 ;
+
+int main()
+{
+    Test1 t1 ;
+    Test2 t2 ;
+
+    printf("Address of t1     = %p\n", (void *)&t1);
+    printf("Address of char a = %p\n", (void *)&t1.a);
+    printf("Address of int b  = %p\n", (void *)&t1.b);
+    printf("Address of char c = %p\n", (void *)&t1.c);
+    printf("Size of char a    = %zu\n", sizeof(t1.a));
+    printf("Size of int b     = %zu\n", sizeof(t1.b));
+    printf("Size of char c    = %zu\n", sizeof(t1.c));
+    printf("Size of Test1     = %zu\n\n", sizeof(t1));
+
+    printf("Address of t2     = %p\n", (void *)&t2);
+    printf("Address of int b  = %p\n", (void *)&t2.b);
+    printf("Address of char a = %p\n", (void *)&t2.a);
+    printf("Address of char c = %p\n", (void *)&t2.c);
+    printf("Size of int b     = %zu\n", sizeof(t2.b));
+    printf("Size of char a    = %zu\n", sizeof(t2.a));
+    printf("Size of char c    = %zu\n", sizeof(t2.c));
+    printf("Size of Test2     = %zu\n\n", sizeof(t2));
+
+    return 0 ;
+}*/
+
+
+// 12. #pragma pack
+
+/*#include<stdio.h>
+
+typedef struct 
+{
+    char c ;
+    int i  ;
+} Normal ;
+
+#pragma pack(1)
+
+typedef struct
+{
+    char c ;
+    int i  ;
+} Packed ;
+
+#pragma pack()
+
+int main()
+{
+    Normal n ;
+    Packed p ;
+
+    printf("Normal structure\n");
+    printf("Address of c = %p\n", (void *)&n.c);
+    printf("Address of i = %p\n", (void *)&n.i);
+    printf("Size         = %zu bytes\n\n", sizeof(n));
+
+    printf("Packed structure\n");
+    printf("Address of c = %p\n", (void *)&p.c);
+    printf("Address of i = %p\n", (void *)&p.i);
+    printf("Size         = %zu bytes\n", sizeof(p));
+
+    return 0 ;
+}*/
+
+
 
 
