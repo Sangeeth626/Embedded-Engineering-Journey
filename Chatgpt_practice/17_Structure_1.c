@@ -725,5 +725,252 @@ int main()
 }*/
 
 
+// 13. Structure + Array + Pointer function
+
+/*#include<stdio.h>
+
+typedef struct
+{
+    int id ;
+    char name[20] ;
+    float temperature ;
+    float voltage ;
+} Sensor ;
+
+void display_sensor(const Sensor *p);
+void update_temperature(Sensor *p , float new_temp);
+
+int main()
+{
+    Sensor sensors[3] =
+    { {.id = 101 , .name = "LM35" , .temperature = 32.5 , .voltage = 3.31} , 
+      {.id = 102 , .name = "BMP280" , .temperature = 28.7 , .voltage = 3.28} ,
+      {.id = 103 , .name = "DHT11" , .temperature = 30.2 , .voltage = 3.31}
+    } ;
+    Sensor *p = sensors ;
+
+    for(int i=0 ; i<3 ; i++)
+    {
+        display_sensor(p);
+        p++ ;
+    }
+
+    p = sensors ;
+    p++ ;
+    update_temperature(p ,35.5) ;
+
+    display_sensor(p) ;
+
+    return 0 ;
+}
+
+void display_sensor(const Sensor *p) 
+{
+    printf("Sensor ID   : %d\n", p->id);
+    printf("Sensor Name : %s\n", p->name);
+    printf("Temperature : %.2f degree\n",p->temperature);
+    printf("Voltage     : %.2f V\n", p->voltage);
+    printf("Address     : %p\n", p) ;
+    printf("Size of Sensor : %zu bytes\n\n", sizeof(Sensor));
+}
+
+void update_temperature(Sensor *p , float new_temp)
+{
+    p->temperature = new_temp ;
+}*/
+
+
+// 14. Sturcture Array to Function
+
+/*#include<stdio.h>
+
+typedef struct
+{
+    int id ;
+    char name[20] ;
+    float temperature ;
+    float voltage ;
+} Sensor ;
+
+void display_all_sensor(const Sensor *p , int count);
+
+int main()
+{
+    Sensor sensors[3] = 
+    { { .id = 101 , .name = "LM35" , .temperature = 32.5 , .voltage = 3.31} ,
+      { .id = 102 , .name = "BMP280" , .temperature = 28.7 , .voltage = 3.28} ,
+      { .id = 103 , .name = "DHT11" ,.temperature =30.2 , .voltage = 3.31}
+    };
+    Sensor *p = sensors ;
+
+    display_all_sensor(p,3);
+
+    return 0 ;
+}
+
+void display_all_sensor(const Sensor *p , int count)
+{
+    for(int i=0 ; i<count ; i++)
+    {
+        printf("Sensor ID   : %d\n", p->id);
+        printf("Sensor name : %s\n", p->name);
+        printf("Temperature : %.2f degree\n", p->temperature);
+        printf("Voltage     : %.2f V\n", p->voltage);
+        printf("Address     : %p\n", p);
+        printf("Size of sensor = %zu bytes\n\n", sizeof(Sensor)) ;
+        p++ ;
+    }
+}*/
+
+// 15. Structure containing an array
+
+/*#include<stdio.h>
+
+typedef struct
+{
+    int id ;
+    char name[20] ;
+    float temperature ;
+    float voltage ;
+} Sensor ;
+
+typedef struct
+{
+    char device_name[20] ;
+    int sensor_count ;
+    Sensor sensors[3] ;
+} SensorSystem ;
+
+int main()
+{
+    SensorSystem system = 
+    {
+        "Environment Monitor" , 3 ,
+        {
+            { 100 , "LM35" , 32.5, 3.31} ,
+            { 101 , "BMP280" , 28.7, 3.28} ,
+            { 102 , "DHT11" , 30.2, 3.31}
+        } 
+    } ;
+    SensorSystem *p = &system ;
+
+    printf("\nDevice Name   : %s\n", p->device_name) ;
+    printf("Sensor count    : %d\n\n", p->sensor_count);
+    printf("%-5s %-8s %-15s %-11s %-14s %-5s\n" , "ID", "Name","Temperature","Voltage", "Address","Size");
+    printf("-----------------------------------------------------------------------\n") ;
+    for(int i=0 ; i<3 ; i++)
+    {
+        printf("%-5d %-10s  %-12.2f %.2f V     %-15p %-5d \n" , 
+            p->sensors[i].id ,
+            p->sensors[i].name ,
+            p->sensors[i].temperature ,
+            p->sensors[i].voltage ,
+            (void *)&p->sensors[i] ,
+            sizeof(Sensor) ) ;
+        }
+
+    printf("\n        Memory Layout  \n");
+    printf("-----------------------------\n");
+
+    printf("system address        : %p\n", (void *)&system);
+    printf("device_name address   : %p\n", (void *)p->device_name);
+    printf("sensor_count address  : %p\n", (void *)&p->sensor_count);
+
+    printf("sensors[0] address    : %p\n", (void *)&p->sensors[0]);
+    printf("sensors[1] address    : %p\n", (void *)&p->sensors[1]);
+    printf("sensors[2] address    : %p\n", (void *)&p->sensors[2]);
+
+    printf("\nSize of Sensor        : %zu bytes\n", sizeof(Sensor));
+    printf("Size of SensorSystem  : %zu bytes\n", sizeof(SensorSystem));
+
+    return 0 ;
+}*/
+
+
+// 16. Structure + Pointer + Nested Array + Function + Returning function
+
+/*#include<stdio.h>
+
+typedef struct
+{
+    int id ;
+    char name[20] ;
+    float temperature ;
+    float voltage ;
+} Sensor ;
+
+typedef struct
+{
+    char device_name[20];
+    int sensor_count;
+    Sensor sensors[3] ;
+} SensorSystem ;
+
+void display_system(const SensorSystem *p) ;
+void update_sensor(SensorSystem *p , int index , float new_temp ) ;
+float get_average_temperature(const SensorSystem *p) ;
+
+int main()
+{
+    SensorSystem system = {"Environment Monitor" , 3 , 
+        {
+            {100 , "LM35" , 32.5 , 3.31} , 
+            {101 , "BMP280" , 28.70 , 3.28} , 
+            {102 , "DHT11" , 30.20 , 3.31}
+        } 
+    } ;
+    SensorSystem *p = &system ;
+    float average ;
+
+
+    display_system(p);
+
+    update_sensor(p, 1, 35.5);
+
+    display_system(p) ;
+
+    average = get_average_temperature(p);
+    printf("\nAverage temperature : %.2f\n", average) ;
+
+    printf("\n------- MEMORY LAYOUT -------\n");
+    printf("System address    : %p\n", (void *)p);
+    for(int i=0 ; i< p->sensor_count ; i++)
+    {
+        printf("Sensor[%d] address : %p\n", i, (void *)&p->sensors[i]);
+    }
+    printf("Size of Sensor        : %zu bytes\n", sizeof(Sensor));
+    printf("Size of Sensor System : %zu bytes\n", sizeof(SensorSystem));
+
+    return 0 ;
+}
+
+void display_system(const SensorSystem *p)
+{
+    printf("\nDevice name  : %s\n", p->device_name);
+    printf("Sensor count : %d\n\n", p->sensor_count) ;
+
+    printf("%-5s %-10s %-15s %-12s %-15s %-10s\n", "ID","Name","Temperature","Voltage","Address","Size") ;
+    printf("------------------------------------------------------------------------\n") ;
+    for(int i=0 ; i< p->sensor_count ; i++)
+    {
+        printf("%-5d %-10s %-15.2f %-12.2f %-15p %-10zu\n", p->sensors[i].id , p->sensors[i].name , p->sensors[i].temperature , p->sensors[i].voltage , (void *)&p->sensors[i] , sizeof(Sensor)) ;
+    }
+}
+
+void update_sensor(SensorSystem *p ,int index , float new_temp)
+{
+    p->sensors[index].temperature = new_temp ;
+}
+
+float get_average_temperature(const SensorSystem *p)
+{
+    float sum = 0 ;
+
+    for(int i=0 ; i< p->sensor_count ; i++)
+    {
+        sum += p->sensors[i].temperature ;
+    }
+    return sum / p->sensor_count ;
+}*/
 
 

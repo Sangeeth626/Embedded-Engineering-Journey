@@ -172,7 +172,7 @@ int main()
 int main()
 {
     int n = 50;
-    int *p  = &n ;
+    int *p = &n ;
 
     printf("Value of  n = %d\n", n);
     printf("Value of *p = %d\n", *p);
@@ -183,7 +183,7 @@ int main()
     return 0 ;
 }*/
 
-// 8.1 with const (but cannot change the value )
+// 8.1 with const (but cannot change the value(ie...Data) )
 
 /*#include<stdio.h>
 int main()
@@ -304,12 +304,12 @@ int main()
     int n = 50 ;
     const int *const p = &n ;
 
-    printf("Value of  n = %d", n);
-    printf("Value of *p = %d", *p);
+    printf("Value of  n = %d\n", n);
+    printf("Value of *p = %d\n", *p);
 
 //    *p = 100 ;                    // note : Cannot able to modify data , It shows compilation error 
-    printf("Value of *p = %d", *p);
-    printf("Value of  n = %d", n);
+    printf("Value of *p = %d\n", *p);
+    printf("Value of  n = %d\n", n);
 
     return 0 ;
 }*/
@@ -322,13 +322,13 @@ int main()
     int n = 50 ;
     const int *const p = &n ;
 
-    printf("Value of  n = %d", n);
-    printf("Value of *p = %d", *p);
+    printf("Value of  n = %d\n", n);
+    printf("Value of *p = %d\n", *p);
 
 //    p = &n ;                // note : Cannot able to modify pointer , It shows compilation error
     n = 100 ;                    
-    printf("Value of *p = %d", *p);
-    printf("Value of  n = %d", n);
+    printf("Value of *p = %d\n", *p);
+    printf("Value of  n = %d\n", n);
 
     return 0 ;
 }*/
@@ -452,7 +452,7 @@ void display(const int *p1, const int *p2)
     printf("Value of *p2 inside display() = %d\n", *p2) ;
 }*/
 
-// 11.5 Modifying one variable But only read another variable
+// 11.5 Modifying one variable and only read another variable
 
 /*#include<stdio.h>
 
@@ -464,7 +464,7 @@ int main()
     int n2 = 100 ;
 
     printf("Value of n1 before function call = %d\n", n1);
-    printf("Value of n1 before function call = %d\n", n2);
+    printf("Value of n2 before function call = %d\n", n2);
 
     process(&n1, &n2);
 
@@ -477,7 +477,7 @@ int main()
 void process(int *p1, const int *p2)
 {
     *p1 = 150 ;            // note : Data can be modified through p1
-//    *p2 = 200 ;             note : Data cannot be modified through p1
+ //   *p2 = 200 ;            // note : Data cannot be modified through p2
     printf("Value of *p1 inside process() = %d\n", *p1);
     printf("Value of *p2 inside process() = %d\n", *p2);
 }*/
