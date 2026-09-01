@@ -175,3 +175,165 @@ void print_binary(unsigned char value)
 
 // 3.1 Now let's make your SET operation reusable
 
+/*#include<stdio.h>
+
+void print_binary(unsigned char value);
+int main()
+{
+    unsigned char value = 5 ;
+    int bit ;                                      // earlier i used unsigned char and for scanf the format specifier for that if %hhu , But my MinW environment is older , so compiler's scanf implementation doesn't understand the hh length modifier.
+
+    printf("\nValue before Set : %d\n", value);
+    print_binary(value);
+
+    printf("\nBefore scanf:\n");
+    printf("value = %d\n", value);
+
+    printf("Set Bit Position : ");
+    scanf("%d", &bit);      // note : earlier we use scanf("%hhu", &bit); ,  format specifier of unsigned char is %hhu , look teble for more details
+
+    printf("After scanf:\n");
+    printf("bit   = %d\n", bit);
+    printf("value = %d\n", value);
+
+    if(bit< 0 || bit>7)              // note : bit is  unsigned char , An unsigned type cannot represent negative values , so bit < 0 condition is always false so we dont need the condition
+    {
+        printf("Invalid position\n");
+        return 0 ;
+    }
+
+    value |= (1 << bit) ;
+
+    printf("\nValue after Set  : %d\n", value);
+    print_binary(value);
+
+
+    return 0 ;
+}
+
+void print_binary(unsigned char value)
+{
+    printf("Binary of value  : ");
+    for(int i=7 ; i>=0 ; i--)
+    {
+        printf("%d", (value >> i) & 1);
+    }
+    printf("\n");
+}
+// note : For checking warning :
+//          gcc -Wall -Wextra -std=c11 19_Bit_Manipulation.c -o 19_Bit_Manipulation.exe
+*/
+
+
+// 4. CLEAR Bit 3
+
+/*#include<stdio.h>
+
+void print_binary(unsigned char value);
+
+int main()
+{
+    unsigned char value = 13 ;
+    int bit ;
+
+    printf("Value before clear : %d\n", value);
+    print_binary(value);
+
+    value &= ~(1<<3);
+
+    printf("Value after clear  : %d\n", value);
+    print_binary(value);
+
+    return 0 ;
+}
+
+void print_binary(unsigned char value)
+{
+    printf("Binary of value    : ");
+    for(int i=7 ; i>=0 ; i--)
+    {
+        printf("%d", (value >> i) & 1) ;
+    }
+    printf("\n");
+}*/
+
+// 4.1 Now let's make your CLEAR operation reusable
+
+/*#include<stdio.h>
+
+void print_binary(unsigned char value);
+
+int main()
+{
+    unsigned char value = 13 ;
+    int bit ;
+
+    printf("\nValue before clear : %d\n", value);
+    print_binary(value);
+
+    printf("\nEnter the bit position to be cleared : ");
+    scanf("%d", &bit);
+    if(bit<0 || bit>7)
+    {
+        printf("Invalid bit position\n");
+        return 0 ;
+    }
+
+    value &= ~(1<<bit);
+
+    printf("\nValue after clear  : %d\n", value);
+    print_binary(value);
+
+    return 0 ;
+}
+
+void print_binary(unsigned char value)
+{
+    printf("Binary of value    : ");
+    for(int i=7 ; i>=0 ; i--)
+    {
+        printf("%d", (value >> i) & 1) ;
+    }
+    printf("\n");
+}*/
+
+
+// 5. TOGGLE BIT 
+
+#include<stdio.h>
+
+void print_binary(unsigned char value);
+
+int main()
+{
+    unsigned char value = 13 ;
+    int bit ;
+
+    printf("Value before toggle : %d\n", value);
+    print_binary(value);
+
+    printf("\nEnter the bit position to be toggled : ");
+    scanf("%d", &bit);
+    if(bit<0 || bit >7)
+    {
+        printf("Invalid bit position\n");
+        return 0 ;
+    }
+
+    value ^= (1 << bit) ;
+    value ^= (1 << bit) ;
+
+    printf("\nValue after toggle : %d\n", value);
+    print_binary(value);
+    return 0 ;
+}
+
+void print_binary(unsigned char value)
+{
+    printf("Binary of value  : ");
+    for(int i=7 ; i>=0 ; i--)
+    {
+        printf("%d", (value >> i) & 1);
+    }
+    printf("\n");
+}
