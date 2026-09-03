@@ -1,6 +1,7 @@
 /*------------------------------ READING BITS  ----------------------------------*/
 
 
+
 // 1. Bitwise AND (&)
 
 /*#include<stdio.h>
@@ -140,6 +141,7 @@ int main()
 
 
 /*-----------------------------  MODIFICATION OF BITS  -------------------------*/
+
 
 
 // 3. SET Bit 3 
@@ -300,7 +302,7 @@ void print_binary(unsigned char value)
 
 // 5. TOGGLE BIT 
 
-#include<stdio.h>
+/*#include<stdio.h>
 
 void print_binary(unsigned char value);
 
@@ -321,7 +323,7 @@ int main()
     }
 
     value ^= (1 << bit) ;
-    value ^= (1 << bit) ;
+//    value ^= (1 << bit) ;
 
     printf("\nValue after toggle : %d\n", value);
     print_binary(value);
@@ -336,4 +338,198 @@ void print_binary(unsigned char value)
         printf("%d", (value >> i) & 1);
     }
     printf("\n");
+}*/
+
+
+
+/*-------------------------- BIT FIELD -----------------------------*/
+
+
+// 6. Calculating mask and Bit field , for given start_bit and width
+
+/*#include<stdio.h>
+
+void print_binary(unsigned char value);
+void print_hexadecimal(unsigned char value);
+
+int main()
+{
+    unsigned char value = 0 ;
+    int start_bit , width , mask , field;
+
+    printf("Value : %d\n", value);
+    print_binary(value);
+    print_hexadecimal(value);
+    printf("\n");
+
+    printf("Enter the start_bit : ");
+    scanf("%d", &start_bit);
+    printf("Enter the width     : ");
+    scanf("%d", &width);
+    printf("\n");
+
+    if(start_bit < 0)
+    {
+        printf("Invalid start_bit\n!");
+        return 0 ;
+    }
+
+    if(width <= 0)
+    {
+        printf("Invalid width!\n");
+        return 0 ;
+    }
+
+    if((start_bit + width) > 8)
+    {
+        printf("Invalid field range!\n");
+        printf("It is 8-bit register, so the sum of start_bit and width should ber less than 8!\n");
+        return 0 ;
+    }
+
+    mask = ((1<<width) - 1) << start_bit ;
+    printf("Mask : %d\n", mask);
+    print_binary(mask);
+    print_hexadecimal(mask);
+    printf("\n");
+
+    field = (value & mask) >> start_bit ;
+    printf("Field : %d\n", field);
+    print_binary(field);
+    print_hexadecimal(field);
+    printf("\n");
+
+    return 0 ;
+}
+
+void print_binary(unsigned char value)
+{
+    printf("Binary : 0b");
+    for(int i=7 ; i>=0 ; i--)
+    {
+        printf("%d", (value>>i)&1);
+    }
+    printf("\n");
+}
+
+void print_hexadecimal(unsigned char value)
+{
+    int temp;
+    int hex[2] ;
+
+    printf("Hexadecimal : 0x");
+
+    if(value == 0)
+    {
+        printf("0\n");
+        return;
+    }
+
+    int i = 0 ;
+    while(value!=0)
+    {
+        temp  = value % 16 ;
+        hex[i] = temp ;
+        value = value/16 ;
+
+        i++ ;
+    }
+
+    for(i=i-1  ; i>=0 ; i--)
+    {
+        if(hex[i] == 10)
+        {
+            printf("A");
+        }
+        else if(hex[i] == 11)
+        {
+            printf("B");
+        }
+        else if(hex[i] == 12)
+        {
+            printf("C");
+        }
+        else if(hex[i] == 13)
+        {
+            printf("D");
+        }
+        else if(hex[i] == 14)
+        {
+            printf("E");
+        }
+        else if(hex[i] == 15)
+        {
+            printf("F");
+        }
+        else
+        {
+            printf("%d", hex[i]);
+        }
+    }
+
+    printf("\n");
+}*/
+
+// 6.1 Decimal to Hexadecimal using Nibble method 
+
+#include<stdio.h>
+
+void print_binary(unsigned char value);
+void print_hexadecimal(unsigned char value);
+int main()
+{
+    unsigned char value ;
+
+    printf("Ente a value : ");
+    scanf("%d",&value);
+    if(value < 0 || value > 255)
+    {
+        printf("Invalid value\n");
+        return 0;
+    }
+
+    print_binary(value);
+    print_hexadecimal(value);
+
+    return 0 ;
+}
+
+void print_binary(unsigned char value)
+{
+    printf("Binary :");
+    for(int i=7 ; i>=0 ; i--)
+    {
+        printf("%d", (value>>i)&1);
+    }
+    printf("\n");
+}
+
+void print_hexadecimal(unsigned char value)
+{
+    char high_nibble, low_nibble;
+
+    high_nibble = (value>>4) & 0x0F ;
+    low_nibble  = value & 0x0F ;
+
+    printf("\nHigh nibble : %d\n", high_nibble);
+    printf("Low  nibble : %d\n", low_nibble);
+    printf("Hexadecimal : ");
+
+    if((high_nibble) < 10)
+    {
+        printf("%c", '0' + high_nibble);
+    }
+    else
+    {
+        printf("%c", 'A' + (high_nibble - 10));
+    }
+
+    if((low_nibble) < 10)
+    {
+        printf("%c", '0' + low_nibble);
+    }
+    else
+    {
+        printf("%c", 'A' + (low_nibble - 10));
+    }
 }
