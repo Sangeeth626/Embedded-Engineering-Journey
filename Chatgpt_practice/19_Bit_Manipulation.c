@@ -472,7 +472,7 @@ void print_hexadecimal(unsigned char value)
 
 // 6.1 Decimal to Hexadecimal using Nibble method 
 
-#include<stdio.h>
+/*#include<stdio.h>
 
 void print_binary(unsigned char value);
 void print_hexadecimal(unsigned char value);
@@ -525,6 +525,124 @@ void print_hexadecimal(unsigned char value)
     }
 
     if((low_nibble) < 10)
+    {
+        printf("%c", '0' + low_nibble);
+    }
+    else
+    {
+        printf("%c", 'A' + (low_nibble - 10));
+    }
+}*/
+
+
+
+// 7. FIELD INSERTION / MODIFICATION
+
+#include<stdio.h>
+
+void print_binary(unsigned char register_value);
+void print_hexadecimal(unsigned char register_value);
+
+int main()
+{
+    int register_value ;                              // Here i use int data type intead of unsigned because mu MinGW GCC is older version the dosent contain format specifier %hhu , so i used int datatype and validate the limit just like unsigned char 0-255 
+    int start_bit , width , new_field, mask ;
+
+    printf("Enter the register value : ");
+    scanf("%d", &register_value);
+    if(register_value < 0 || register_value > 255)
+    {
+        printf("Invalid register value!\n");
+        return 0 ;
+    }
+    print_binary(register_value);
+
+// START BIT
+    printf("Enter the start bit : ");
+    scanf("%d", &start_bit);
+    if(start_bit < 0 || start_bit > 7)
+    {
+        printf("Invalid start bit!\n");
+        printf("Vaid range : 0 to 7 for 8-bit register\n");
+        return 0 ;
+    }
+
+// WIDTH
+    printf("Enter the width : ");
+    scanf("%d", &width);  
+    if(width <= 0 || width > 8)  
+    {
+        printf("Invalid width!\n");
+        printf("Valid range : 1 to 8 for 8-bit register\n");
+        return 0 ;
+    }
+
+// START BIT + WIDTH CONDITION
+    if(start_bit + width > 8 )
+    {
+        printf("Invalid field!\n");
+        printf("It is 8-bit regiter, So sum of start bit and width should not be greater then 8.\n");
+        return 0 ;
+    }
+
+// NEW FIELD
+    printf("Enter the new field : ");
+    scanf("%d", &new_field);
+    if(new_field < 0 || new_field > ((1 << width) - 1))
+    {
+        printf("Invalid new field value!\n");
+        printf("Valid range is 0 to %d\n", (1 << width) - 1);
+        return 0;
+    }
+
+// CREATING MASK
+    mask = ((1<<width) - 1) << start_bit;
+    printf("\nMask \n");
+    print_binary(mask);
+
+// CLEAR THE REGISTER_VALUE    
+    register_value &= ~mask ;
+    printf("\nRegister value after clear \n");
+    print_binary(register_value);
+
+// MODIFIED REGISTER   
+    register_value |= (new_field << start_bit) ;
+    printf("\nRegiser value after modification \n");
+    print_binary(register_value);
+    printf("Decimal : %d\n", register_value);
+    print_hexadecimal(register_value);
+
+    return 0 ;
+}
+
+void print_binary(unsigned char register_value)
+{
+    printf("Binary : 0b");
+    for(int i=7 ; i>=0 ; i--)
+    {
+        printf("%d", (register_value>>i)&1);
+    }
+    printf("\n");
+}
+
+void print_hexadecimal(unsigned char register_value)
+{
+    int high_nibble, low_nibble ;
+
+    high_nibble = (register_value >> 4) & 0x0F ;
+    low_nibble = register_value & 0x0F ;
+
+    printf("Hexadecimal : 0x");
+    if(high_nibble < 10)
+    {
+        printf("%c", '0' + high_nibble);
+    }
+    else
+    {
+        printf("%c", 'A' + (high_nibble - 10));
+    }
+
+    if(low_nibble < 10)
     {
         printf("%c", '0' + low_nibble);
     }
