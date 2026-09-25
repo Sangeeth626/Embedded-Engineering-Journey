@@ -974,3 +974,40 @@ float get_average_temperature(const SensorSystem *p)
 }*/
 
 
+
+
+
+
+
+
+#include<stdio.h>
+
+void print_binary(unsigned char reg_value) ;
+
+int main()
+{
+    int reg = 10 ;
+    int mask ;
+
+    mask = (0<<1) ;
+    print_binary(mask);
+
+    reg &= mask ;
+    print_binary(reg);
+
+    printf("Register = %d\n", reg);
+
+    return 0 ;
+}
+
+void print_binary(unsigned char reg_value) 
+{
+    printf("Binary :");
+    for(int i=7 ; i>=0 ; i++)
+    {
+        printf("%d", (reg_value >>7) &1);
+    }
+    printf("\n");
+}
+
+

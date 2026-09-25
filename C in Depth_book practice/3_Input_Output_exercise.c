@@ -35,7 +35,7 @@ int main()
 
 
 // 4. 
-#include<stdio.h>
+/*#include<stdio.h>
 #include<limits.h>
 int main()
 {
@@ -43,5 +43,54 @@ int main()
     unsigned int b=4000000000;
     printf("a=%d\t b=%u\n", a, b);
     printf("a=%d\t b=%u\n", INT_MAX, UINT_MAX);
+    return 0 ;
+}*/
+
+
+
+
+/*#include<stdio.h>
+#define SIZE 5
+
+int main()
+{
+    int arr[SIZE];
+    int i ;
+
+    printf("Enter the number : ");
+    for(i=0 ; i<SIZE ; i++)
+    {
+        scanf("%d", &arr[i]);
+    }
+
+    for(i=0 ; i<SIZE; i++)
+    {
+        printf("arr[%d] = %d\n", i, arr[i]);
+    }
+
+    return 0 ;
+}*/
+
+
+
+#include<stdio.h>
+#define SIZE 5
+
+int main()
+{
+    int arr[SIZE];
+    int i ;
+
+    printf("Enter the number : ");
+    for(i=0 ; i<SIZE ; i++)
+    {
+        scanf("%d", &arr[i]);
+    }
+
+    for(i=0 ; i<SIZE; i++)
+    {
+        printf("arr[%d] = %d\n", i, arr[i]);
+    }
+
     return 0 ;
 }

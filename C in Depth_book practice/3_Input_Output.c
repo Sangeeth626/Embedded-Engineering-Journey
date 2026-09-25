@@ -91,7 +91,7 @@ int main()
 
 // 6. %wd -> format fot integer input and integer output 
 
-#include<stdio.h>
+/*#include<stdio.h>
 int main()
 {
     int a, b, c;
@@ -100,4 +100,20 @@ int main()
     printf("Numbers are : %d %d %d\n", a, b, c);
     printf("Numbers are : %4d %4d %4d\n", a, b, c);
     return 0 ;
-}
+}*/
+
+
+// 7. getchar()  and  putchar()
+
+/*#include<stdio.h>
+int main()
+{
+    char ch ;
+    printf("Enter the chracter : ");
+    ch = getchar();
+    printf("The entered chracter is : ");
+    putchar(ch);
+    return 0 ;
+}*/
+
+

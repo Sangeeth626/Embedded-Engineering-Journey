@@ -199,7 +199,7 @@ int main()
 
 // BINARY SEARCH
     low = 0;
-    high = limit - 1;
+    high = limit - 1;09865 
     mid = (low + high) / 2 ;
 
     printf("Enter the number to be searched : ");

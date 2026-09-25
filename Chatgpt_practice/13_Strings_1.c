@@ -378,8 +378,6 @@ int main()
    printf("Enter the string :");
    fgets(str1, sizeof(str1), stdin);
 
-
-
    i = 0 ;
    while(str1[i]!='\0' && str1[i]!='\n')
    {

@@ -1247,3 +1247,20 @@ int main()
     return 0;
 }*/
 
+
+
+
+
+
+
+
+
+#include<stdio.h>
+int main()
+{
+    float a=1, b=2;
+    
+    printf("%.3f", a/b);
+
+    return 0 ;
+}
