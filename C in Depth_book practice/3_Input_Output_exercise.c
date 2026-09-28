@@ -48,49 +48,85 @@ int main()
 
 
 
-
+// 5. 
 /*#include<stdio.h>
-#define SIZE 5
-
 int main()
 {
-    int arr[SIZE];
-    int i ;
+    char c ;
+    printf("Enter a character :");
+    scanf("%c", &c);
+    printf("%d", c);
+    return 0 ;
+}*/
 
-    printf("Enter the number : ");
-    for(i=0 ; i<SIZE ; i++)
-    {
-        scanf("%d", &arr[i]);
-    }
 
-    for(i=0 ; i<SIZE; i++)
-    {
-        printf("arr[%d] = %d\n", i, arr[i]);
-    }
+
+// 6. 
+/*#include<stdio.h>
+int main()
+{
+    float b=123.1265 ;
+    printf("%f\n", b);
+    printf("%.2f\n", b);
+    printf("%.3f\n", b);
+    return 0 ;
+}*/
+
+
+
+// 7. 
+/*#include<stdio.h>
+int main()
+{
+    int a=626, b=2394, c=12345;
+    printf("%5d, %5d, %5d\n", a, b, c);
+    printf("%3d, %4d, %5d\n", a, b, c);
+    return 0 ;
+}*/
+
+
+
+// 8. 
+/*#include<stdio.h>
+int main()
+{
+    int a=98;
+    char ch='c';
+    printf("%c\n", a);
+    printf("%d\n", ch);
+    return 0 ;
+}*/
+
+
+
+// 9. 
+/*#include<stdio.h>
+int main()
+{
+    float a1, b1, a2, b2, a3, b3 ;
+    a1=2;
+    b1=6.8;
+    a2=4.2;
+    b2=3.57;
+    a3=9.82;
+    b3=85.653;
+
+    printf("%3.1f, %4.2f\n", a1, b1);
+    printf("%5.1f, %6.2f\n", a1, b1);
+    printf("%7.1f, %8.2f\n", a1, b1);
 
     return 0 ;
 }*/
 
 
 
+// 10. 
 #include<stdio.h>
-#define SIZE 5
-
 int main()
 {
-    int arr[SIZE];
-    int i ;
-
-    printf("Enter the number : ");
-    for(i=0 ; i<SIZE ; i++)
-    {
-        scanf("%d", &arr[i]);
-    }
-
-    for(i=0 ; i<SIZE; i++)
-    {
-        printf("arr[%d] = %d\n", i, arr[i]);
-    }
-
+    printf("%10s\n", "India");
+    printf("%4s\n", "India");
+    printf("%.2s\n", "India");
+    printf("%5.2s\n", "India");
     return 0 ;
 }
