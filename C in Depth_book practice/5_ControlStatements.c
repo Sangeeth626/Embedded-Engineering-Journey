@@ -476,4 +476,296 @@ int main()
 
 
 
-// 25. Program to print Armstrong number
+// 25. Program to check Armstrong number
+/*#include<stdio.h>
+
+int power(int *n , int *p) ;
+
+int main()
+{
+    int n , digit, count=0, pow, sum=0, temp;
+    printf("Enter the number : ");
+    scanf("%d", &n);
+    temp = n ;
+
+    while(n!=0)
+    {
+        digit = n%10 ;
+        count++ ;
+        n = n/10 ;
+    }
+
+    n = temp ;
+
+    while(n!=0)
+    {
+        digit = n%10 ;
+        pow = power(&digit, &count) ;
+        sum += pow ;
+        n = n/10 ;
+    }
+
+    if(sum == temp)
+    {
+        printf("It is an armstrong number");
+    }
+    else
+    {
+        printf("It is not an armstrong number") ;
+    }
+
+    return 0 ;
+}
+
+int power(int *n, int *p)
+{   int temp ;
+
+    temp = *n ;
+
+    for(int i=1 ; i<*p ; i++)
+    {
+        *n *= temp ; 
+    }
+
+    return *n ;
+}*/
+
+
+// 25.1 Program to print Armstrong number 
+/*#include<stdio.h>
+int main()
+{
+    int n, digit, sum, temp;
+    printf("Armstrong numbers are : ");
+
+    for(n=100 ; n<= 999 ; n++)
+    {
+        temp = n ;
+        sum = 0 ;
+        while(temp!=0)
+        {
+            digit = temp%10 ;
+            sum += (digit * digit * digit);
+            temp = temp/10 ;
+        }
+
+        if(sum == n)
+        {
+            printf("%d ", n);
+        }
+
+    }
+
+    return 0 ;
+}*/
+
+
+
+// 26. Program to find the sum of digit until the sum is reduced to 1 digit
+/*#include<stdio.h>
+
+int sod(long int *n) ;
+
+int main()
+{
+    long int n ;
+    int sumod ;
+
+    printf("Enter the number : ");
+    scanf("%d", &n);
+
+    sumod = sod(&n) ;
+
+    do
+    {
+        sumod = sod(&n);
+        n = sumod ; 
+        printf("%d  ", sumod);
+    } while(sumod>=10) ;
+
+    return 0 ;
+}
+
+int sod(long int *n)
+{
+    int digit, sum=0, temp;
+
+    temp = *n ;
+
+    while(temp != 0)
+    {
+        digit = temp%10 ;
+        sum += digit ;
+        temp = temp/10 ;
+    }
+
+    return sum ; 
+}*/
+
+
+
+// 27. Program to understand use of break
+/*#include<stdio.h>
+int main()
+{
+    int n ;
+    for(n=1 ; n<=5 ; n++)
+    {
+        printf("%d  ", n) ;
+        if(n==3)
+        {
+            break ;
+        }
+    }
+
+    return 0 ;
+}*/
+
+
+
+//28. Program to find whether the number is prime or not 
+/*#include<stdio.h>
+int main()
+{
+    int n, i, flag=1;
+    printf("Enter a number : ");
+    scanf("%d", &n);
+
+    for(i=2 ; i<n ; i++)
+    {
+        if((n%i) == 0)
+        {
+            flag = 0 ;
+            break ;
+        }
+    }
+
+    if(flag == 1)
+    {
+        printf("It is a prime number");
+    }
+    else
+    {
+        printf("It is not a prime number");
+    }
+
+    return 0 ;
+}*/
+
+
+
+// 29. Program to undrstand continue statement
+/*#include<stdio.h>
+int main()
+{
+    int n ;
+    for(n=1 ; n<=5 ; n++)
+    {
+        if(n==3)
+        {
+            continue;    // continue statement is used when we need to go to next iteration after skipping statement of the loop
+        } 
+
+        printf("%d ", n) ;
+    }
+
+    return 0 ;
+}*/
+
+
+
+// 30. Program to print sum and average of the 10 positive integers
+/*#include<stdio.h>
+int main()
+{
+    int n, i=1, sum=0;
+    printf("Enter 10 numbers :\n");
+    while(i<=10)
+    {
+        printf("Enter the %d number : ", i) ;
+        scanf("%d", &n) ;
+        if(n<0)
+        {
+            printf("Enter positive numbers");
+            continue ;
+        }
+        sum += n ;
+        i++ ;
+    }
+
+    printf("SUM = %d\nAverage = %d\n", sum, sum/10);
+
+    return 0 ;
+}*/
+
+
+
+// 32. Program to understand switch control statement
+/*#include<stdio.h>
+int main()
+{
+    int choice;
+    printf("Enter the choice : ");
+    scanf("%d", &choice);
+
+    switch(choice)
+    {
+        case 1  : printf("First\n");
+        case 2  : printf("Second\n");
+        case 3  : printf("Third\n");
+        default : printf("Wrong choice!\n") ;
+    }
+
+    return 0 ;
+}*/
+
+
+
+// 33. Program to understand switch with break statement
+/*#include<stdio.h>
+int main()
+{
+    int choice;
+    printf("Enter the choice : ");
+    scanf("%d", &choice);
+
+    switch(choice)
+    {
+        case 1  : printf("First\n"); break ;
+        case 2  : printf("Second\n"); break ;
+        case 3  : printf("Third\n"); break ;
+        default : printf("Wrong choice!\n") ;
+    }
+
+    return 0 ;
+}*/
+
+
+
+// 34. Program to perform arithmatic calculator in integers
+/*#include<stdio.h>
+int main()
+{
+    int a, b;
+    char op ;
+    printf("Enter number , Operation and another number  : ");
+    scanf("%d%c%d", &a, &op, &b);
+
+    switch(op)
+    {
+        case '+' : printf("SUM = %d", a+b); break ;
+        case '-' : printf("DIF = %d", a-b); break ;
+        case '*' : printf("MUL = %d", a*b); break ;
+        case '/' : printf("DIV = %.2f", (float)a/b); break ;
+        case '%' : printf("MOD = %d", a%b); break ;
+        default  : printf("Invalide Operation"); 
+    }
+
+    return 0 ;
+}*/
+
+
+
+// 35. Program to find the whether the alphabet is vowel or consonant
+
+
