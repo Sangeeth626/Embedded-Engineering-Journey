@@ -767,5 +767,283 @@ int main()
 
 
 // 35. Program to find the whether the alphabet is vowel or consonant
+/*#include<stdio.h>
+int main()
+{
+    char ch ;
+    printf("Enter a character : ");
+    scanf("%c", &ch);
+
+    switch(ch)
+    {
+        case 'a' :
+        case 'e' :
+        case 'i' :
+        case 'o' :
+        case 'u' :
+                    printf("Alphabet is a vowel\n") ;
+                    break ;
+        default  : printf("Alphabet is consonant\n");
+    }
+
+    return 0 ;
+}*/
 
 
+
+// 36. A menu driven program using infinite loop switch
+/*#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+    int choice ;
+
+    while(1)       // infinite loop
+    {
+        printf("1.Create Address book\n");
+        printf("2.Create new contact\n");
+        printf("3.Edit the contact\n");
+        printf("4.Delete the contact\n");
+        printf("5.Display the contact list\n");
+        printf("6.Exit\n");
+
+        printf("\nEnter Your Choice : ");
+        scanf("%d", &choice) ;
+        switch(choice)
+        {
+            case 1 : printf("Address book created.....\n\n") ; break ;
+            case 2 : printf("Created new contact.....\n\n") ; break ;
+            case 3 : printf("Contact Edited.....\n\n") ; break ;
+            case 4 : printf("Contact deleted.....\n\n") ; break ;
+            case 5 : printf("Contact Displayed.....\n\n") ; break ;
+            case 6 : exit(1) ;                                          // loop exits
+            default : printf("Wrong Choice\n") ;
+        }
+    }
+    return 0 ;
+}*/
+
+
+
+// 37. Program to check whether the date entered is valid or not. Assume that dates between year 1850 and 2050
+/*#include<stdio.h>
+int main()
+{
+    int d, m, y ;
+    int flag = 1 , isLeap=0;
+    printf("Enter the (dd/mm/yyyy) : ") ;
+    scanf("%d/%d/%d", &d, &m, &y);
+
+    if(y%100 !=0 && y%4 ==0 || y%400==0)
+    {
+        isLeap = 1 ;
+    }
+
+    if(y<1850 || y>2050 || m<1 || m>12 || d<1 || d>31)
+    {
+        flag = 0 ;
+    }
+    else if(m==2)
+    {
+        if(d>30 || (d==29 && !isLeap))
+        {
+            flag = 0;
+        }
+    }
+    else if(m==4 || m==6 || m==8 || m==10 || m==12)
+    {
+        if(d>=30)
+        {
+            flag = 0 ;
+        }
+    }
+
+    if(flag == 0)
+    {
+        printf("Invalide Date") ;
+    }
+    else
+    {
+        printf("Valid date");
+    }
+
+    return 0;
+}*/
+
+
+
+// 38. Program to find number of notes required for a given amount of money
+/*#include<stdio.h>
+int main()
+{
+    int n, choice, notes;
+    printf("Enter the total numbers of rupees : ");
+    scanf("%d", &n);
+    printf("Enter the value of note from which you want to begin : ");
+    scanf("%d", &choice);
+
+    switch(choice)
+    {
+        case 500 : notes = n/500 ;
+                   printf("Number of 500 notes = %d\n", notes);
+                   n = n%500 ;
+        case 100 : notes = n/100 ;
+                   printf("Number of 100 notes = %d\n", notes);
+                   n=n%100 ;
+        case 50 : notes = n/50 ;
+                  printf("Number of 50 notes  = %d\n", notes);
+                  n = n%50 ;
+        case 20 : notes = n/20 ;
+                  printf("Number of 20 notes  = %d\n", notes);
+                  n=n%20 ;
+        case 10 : notes = n/10;
+                  printf("Number of 10 notes  = %d\n", notes);
+                  n = n%10 ;
+        case 5 : notes = n/5 ;
+                 printf("Number of 5 notes   = %d\n", notes);
+                 n=n%5 ; 
+        case 2 : notes = n/2 ;
+                 printf("Number of 2 notes   = %d\n", notes);
+                 n = n%2 ;
+        case 1 : notes = n/1 ;
+                 printf("Number of 1 notes   = %d\n", notes);
+                 n=n%1 ;  
+                 break ;                              
+        default : printf("Enter only valid values\n");
+                  break ;
+    }
+    return 0 ;
+}*/
+
+
+
+
+
+/*--------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                     PATTERN  PRINTING
+---------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+// 1.a
+/*#include<stdio.h>
+int main()
+{
+    int n ;
+    printf("Enter the number of lines : ");
+    scanf("%d", &n);
+    for(int i=0 ; i<n ; i++)
+    {
+        for(int j=0 ; j<=i; j++)
+        {
+            printf("*");
+        }
+        printf("\n");
+    }
+    return 0 ;
+}*/
+
+
+
+// 1.b
+/*#include<stdio.h>
+int main()
+{
+    int n ;
+    printf("Enter the number of lines : ");
+    scanf("%d", &n);
+    for(int i=1 ; i<=n ; i++)
+    {
+        for(int j=1 ; j<=i ; j++)
+        {
+            printf("%d", i) ;
+        }
+        printf("\n");
+    }
+    return 0 ;
+}*/
+
+
+
+// 1.c
+/*#include<stdio.h>
+int main()
+{
+    int n ;
+    printf("Enter the number of lines : ");
+    scanf("%d", &n);
+    for(int i=1 ; i<=n ; i++)
+    {
+        for(int j=1 ; j<=i ; j++)
+        {
+            printf("%d", j);
+        }
+        printf("\n");
+    }
+    return 0 ;
+}*/
+
+
+
+// 1.d
+/*#include<stdio.h>
+int main()
+{
+    int n ;
+    printf("Enter the number of lines : ");
+    scanf("%d", &n);
+    for(int i=1 ; i<=n ; i++)
+    {
+        for(int j=1 ; j<=i ; j++)
+        {
+            printf("%d", i+j);
+        }
+        printf("\n");
+    }
+    return 0 ;
+}*/
+
+
+
+// 1.e
+/*#include<stdio.h>
+int main()
+{
+    int n ;
+    printf("Enter the number of lines : ");
+    scanf("%d", &n);
+    for(int i=1 ; i<=n ; i++)
+    {
+        for(int j=1 ; j<=i ; j++)
+        {
+            if((i+j)%2 == 0)
+            {
+                printf("1");
+            }
+            else
+            {
+                printf("0");
+            }
+        }
+        printf("\n");
+    }
+    return 0 ;
+}*/
+
+
+// 1.f
+#include<stdio.h>
+int main()
+{
+    int n ;
+    printf("Enter the number of lines : ");
+    scanf("%d", &n);
+    for(int i=1 ; i<=n ; i++)
+    {
+        for(int j=1 ; j<=i ; j++)
+        {
+            printf("*");
+            printf("%d", i);
+        }
+        printf("\n");
+    }
+    return 0 ;
+}
